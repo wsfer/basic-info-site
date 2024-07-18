@@ -1,0 +1,16 @@
+{
+  "name": "basic-info-site",
+  "version": "1.0.0",
+  "description": "Basic Node.js static website",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "dev": "nodemon --env-file=.env index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

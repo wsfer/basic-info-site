@@ -5,10 +5,7 @@ const server = http.createServer();
 const PORT = process.env.PORT || 3000;
 
 server.on('request', async (req, res) => {
-  let filePath = null;
-
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
+  let filePath = '';
 
   switch (req.url) {
     case '/':
@@ -20,20 +17,23 @@ server.on('request', async (req, res) => {
     case '/contact-me':
       filePath = 'contact-me.html';
       break;
-    default:
-      filePath = '404.html';
-      res.statusCode = 404;
   }
 
   try {
     const file = await fs.readFile(filePath);
-    res.setHeader('Content-Legth', Buffer.byteLength(file));
+    res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(file);
   } catch (error) {
-    console.error(error);
-    res.statusCode = 500;
-    res.setHeader('Content-Type', 'text/plain');
-    res.write('500 Internal Server Error');
+    if (error.code === 'ENOENT') {
+      const errorPage = await fs.readFile('404.html');
+      res.writeHead(404, { 'Content-Type': 'text/html' });
+      res.write(errorPage);
+    } else {
+      console.error(error);
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.write('500 Internal Server Error');
+    }
+    
   }
 
   res.end();

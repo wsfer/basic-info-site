@@ -9,13 +9,13 @@ server.on('request', async (req, res) => {
 
   switch (req.url) {
     case '/':
-      filePath = 'index.html';
+      filePath = 'public/index.html';
       break;
     case '/about':
-      filePath = 'about.html';
+      filePath = 'public/about.html';
       break;
     case '/contact-me':
-      filePath = 'contact-me.html';
+      filePath = 'public/contact-me.html';
       break;
   }
 
@@ -25,7 +25,7 @@ server.on('request', async (req, res) => {
     res.write(file);
   } catch (error) {
     if (error.code === 'ENOENT') {
-      const errorPage = await fs.readFile('404.html');
+      const errorPage = await fs.readFile('public/404.html');
       res.writeHead(404, { 'Content-Type': 'text/html' });
       res.write(errorPage);
     } else {

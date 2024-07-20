@@ -5,6 +5,8 @@
 :root {
   --black: hsl(0, 0%, 10%);
   --white: hsl(0, 0%, 80%);
+  --gray: hsl(0, 0%, 63%);
+  --white-opaque: hsla(0, 0%, 80%, 0.3);
 }
 
 body {
@@ -73,6 +75,34 @@ body {
 }
 
 /** Index page **/
+.home {
+  background-color: var(--gray);
+  color: var(--black);
+  min-height: 100%;
+}
+
+.home__banner {
+  background-image: linear-gradient(var(--white-opaque), var(--white-opaque)), url('banner-image.jpg');
+  background-position: center;
+  background-size: cover;
+  padding: 10rem 0;
+}
+
+.home__title {
+  font-size: 3.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.home__texts {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.home__image {
+  display: block;
+  margin: 2rem auto 2rem;
+}
 
 /** About page **/
 

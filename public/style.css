@@ -126,4 +126,21 @@ body {
 /** Contact page **/
 
 /** 404 page **/
+.not-found {
+  background-color: var(--gray);
+  color: var(--black);
+  min-height: 100%;
+  padding: 2rem 0;
+}
 
+.not-found__title {
+  font-size: 3.2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.not-found__image {
+  display: block;
+  margin: 2rem auto;
+  min-width: 50%;
+}

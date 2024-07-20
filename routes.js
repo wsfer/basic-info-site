@@ -4,6 +4,8 @@ const routes = new Map([
   ['/contact-me', { fileName: 'contact-me.html', contentType: 'text/html' }],
   ['/favicon.ico', { fileName: 'favicon.ico', contentType: 'image/x-icon' }],
   ['/style.css', { fileName: 'style.css', contentType: 'text/css' }],
+  ['/banner-image.jpg', { fileName: 'banner-image.jpg', contentType: 'image/jpeg' }],
+  ['/lake-with-trees.jpg', { fileName: 'lake-with-trees.jpg', contentType: 'image/jpeg' }],
 ]);
 
 module.exports = routes;

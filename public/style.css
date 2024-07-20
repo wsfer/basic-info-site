@@ -105,6 +105,23 @@ body {
 }
 
 /** About page **/
+.about {
+  background-color: var(--gray);
+  color: var(--black);
+  min-height: 100%;
+  padding: 2rem 0;
+}
+
+.about__title {
+  font-size: 2.4rem;
+  margin: 0;
+  text-align: center;
+}
+
+.about__texts {
+  margin: 0 auto;
+  width: 80%;
+}
 
 /** Contact page **/
 

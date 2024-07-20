@@ -6,6 +6,7 @@ const routes = new Map([
   ['/style.css', { fileName: 'style.css', contentType: 'text/css' }],
   ['/banner-image.jpg', { fileName: 'banner-image.jpg', contentType: 'image/jpeg' }],
   ['/lake-with-trees.jpg', { fileName: 'lake-with-trees.jpg', contentType: 'image/jpeg' }],
+  ['/cat-jump.gif', { fileName: 'cat-jump.gif', contentType: 'image/gif' }]
 ]);
 
 module.exports = routes;

@@ -7,7 +7,8 @@ const routes = new Map([
   ['/banner-image.jpg', { fileName: 'banner-image.jpg', contentType: 'image/jpeg' }],
   ['/lake-with-trees.jpg', { fileName: 'lake-with-trees.jpg', contentType: 'image/jpeg' }],
   ['/lavander-field.jpg', { fileName: 'lavander-field.jpg', contentType: 'image/jpg' }],
-  ['/cat-jump.gif', { fileName: 'cat-jump.gif', contentType: 'image/gif' }]
+  ['/cat-jump.gif', { fileName: 'cat-jump.gif', contentType: 'image/gif' }],
+  ['/script.js', { fileName: 'script.js', contentType: 'text/javacript' }]
 ]);
 
 module.exports = routes;

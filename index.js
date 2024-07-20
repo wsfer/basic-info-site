@@ -1,42 +1,45 @@
 const http = require('node:http');
 const fs = require('node:fs/promises');
+const routes = require('./routes.js');
 
 const server = http.createServer();
 const PORT = process.env.PORT || 3000;
 
 server.on('request', async (req, res) => {
-  let filePath = '';
+  console.log(`Received request for ${req.url}`);
 
-  switch (req.url) {
-    case '/':
-      filePath = 'public/index.html';
-      break;
-    case '/about':
-      filePath = 'public/about.html';
-      break;
-    case '/contact-me':
-      filePath = 'public/contact-me.html';
-      break;
-  }
+  // Get info of requested content stored on routes Map based on url
+  const fileInfo = routes.get(req.url);
+
+  // If requested url isn't on routes these values default to a 404 html page response
+  const fileName = fileInfo?.fileName ?? '404.html';
+  const contentType = fileInfo?.contentType ?? 'text/html';
+
+  res.statusCode = fileInfo ? 200 : 404;
+  res.setHeader('Content-Type', contentType)
 
   try {
-    const file = await fs.readFile(filePath);
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(file);
+    // Try getting the file
+    const file = await fs.readFile(`public/${fileName}`);
+    res.setHeader('Content-Length', Buffer.byteLength(file));
+    res.end(file);
   } catch (error) {
+    // If file doesn't exist on public directory a 404 page is sent by default
     if (error.code === 'ENOENT') {
+      console.warn(`Public directory is missing ${fileName}`);
       const errorPage = await fs.readFile('public/404.html');
-      res.writeHead(404, { 'Content-Type': 'text/html' });
-      res.write(errorPage);
+      res.writeHead(404, {
+        'Content-Type': 'text/html',
+        'Content-Length': Buffer.byteLength(errorPage),
+      });
+      res.end(errorPage);
     } else {
-      console.error(error);
+      // For some unexpected error
+      console.error(error.message);
       res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.write('500 Internal Server Error');
+      res.end('500 Internal Server Error');
     }
-    
   }
-
-  res.end();
 });
 
 server.listen(PORT, () => {

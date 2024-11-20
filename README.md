@@ -2,7 +2,7 @@
 
 ## About
 
-This is a very basic Node.js static website that I built as part of [The Odin Project]('https://www.theodinproject.com') curriculum.
+This is the Node.js only version of a very basic static website that I built as part of [The Odin Project]('https://www.theodinproject.com') curriculum.
 
 ## Technologies
 
@@ -29,11 +29,14 @@ npm run dev
 
 Finally access from <strong>localhost:3000</strong> on browser.
 
-Optionally you can create a .env file to change the port on root directory
+Optionally you can create a .env file to change the port and env mode.
 
 ```Dotenv
 PORT=5000
+NODE_ENV=dev
 ```
+
+\*static files are cached on 'prod' mode (default)
 
 ## What I learned
 

@@ -4,6 +4,7 @@ const routes = require('./routes.js');
 
 const server = http.createServer();
 const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'prod';
 
 server.on('request', async (req, res) => {
   console.log(`Received request for ${req.url}`);
@@ -16,7 +17,12 @@ server.on('request', async (req, res) => {
   const contentType = fileInfo?.contentType ?? 'text/html';
 
   res.statusCode = fileInfo ? 200 : 404;
-  res.setHeader('Content-Type', contentType)
+  res.setHeader('Content-Type', contentType);
+
+  // Tell client to cache files on prod mode
+  if (NODE_ENV === 'prod') {
+    res.setHeader('Cache-Control', 'max-age=31536000');
+  }
 
   try {
     // Try getting the file
